@@ -1,7 +1,9 @@
 #include "Game.h"
 #include <chrono>
 #include <SFML/Graphics.hpp>
+#include "Player.h"
 
+Player player{};
 Game::Game(int fps, std::string title)
 {	
 	window.setFramerateLimit(fps);
@@ -46,6 +48,7 @@ void Game::input()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 		running = false;
+	player.input();
 }
 
 void Game::update()
@@ -54,11 +57,13 @@ void Game::update()
 	for (; currentSlice >= ftSlice; currentSlice -= ftSlice)
 	{
 		//all structs/objects/whatever should update here, as well as checking collisions
+		player.update(ftStep, window);
 	}
 }
 
 void Game::draw()
 {
 	//draw everything before window.display()!
+	player.draw(window);
 	window.display();
 }

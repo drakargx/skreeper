@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 using FrameTime = float;
-const float ftStep, ftSlice;
+const float ftStep{ 1.f }, ftSlice{ 1.f };
 
 struct Game
 {
